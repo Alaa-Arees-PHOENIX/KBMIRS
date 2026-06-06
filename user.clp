@@ -1,0 +1,30 @@
+(deftemplate user
+	(slot name)
+	(slot budget (type SYMBOL) (allowed-symbols low medium high))
+	(slot preferred_music_style (type SYMBOL) (allowed-symbols classic jazz rock blues folk))
+	(slot like_wind_instruments (type SYMBOL) (allowed-symbols TRUE FALSE))
+	(slot like_percussion_instruments (type SYMBOL) (allowed-symbols TRUE FALSE))
+	(slot travels_alot (type SYMBOL) (allowed-symbols TRUE FALSE))
+	(slot complaining_neighbors (type SYMBOL) (allowed-symbols TRUE FALSE))
+	(slot lungs_capacity (type SYMBOL) (allowed-symbols low high))
+	(slot like_to_play_with_group (type SYMBOL) (allowed-symbols TRUE FALSE))
+	(slot expected_time_of_training (type SYMBOL) (allowed-symbols low medium high))
+	(slot enjoy_creating_harmonies (type SYMBOL) (allowed-symbols TRUE FALSE))
+)
+
+; Adding some users for quick testing
+(deffacts users
+	(user
+		(name "Nina")
+		(budget medium)
+		(preferred_music_style classic)
+        	(like_wind_instruments TRUE)
+		(like_percussion_instruments FALSE)
+		(travels_alot TRUE)
+		(complaining_neighbors TRUE)
+		(lungs_capacity high)
+		(like_to_play_with_group TRUE)
+		(expected_time_of_training high)
+		(enjoy_creating_harmonies TRUE)
+	)
+)
