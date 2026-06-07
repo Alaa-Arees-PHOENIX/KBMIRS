@@ -112,7 +112,7 @@
          	(price 0)
          	(portable TRUE)
          	(noisy FALSE)
-         	(solo_instrument FALSE)
+         	(solo_instrument TRUE)
          	(proficiency_required_time 0)
          	(polyphonic TRUE)
 	)
