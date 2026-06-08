@@ -66,7 +66,7 @@
 	
 
 	(musical_instrument
-		(name ukelele)
+		(name ukulele)
 		(physical_type string)
 		(music_style classic rock jazz folk)
 		(price 0)
