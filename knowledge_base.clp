@@ -1,7 +1,7 @@
 (defrule retract_noncompatible_style
 	(user (preferred_music_style ?prefms))
-	(not (musical_instrument (name ?n) (music_style $? ?prefms $?)))
-	?ins <- (musical_instrument (name ?n))
+	?ins <- (musical_instrument (name ?n) (music_style $?insMusicStyles))
+	(not (test (member$ ?prefms ?insMusicStyles)))
 	=>
 	(retract ?ins)
 )
