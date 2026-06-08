@@ -6,7 +6,7 @@ class MusicQuestionnaire:
         self.root = root
         self.root.title("Music Preference Questionnaire")
         self.root.geometry("1366x768")
-        self.root.resizable(False, False)
+        self.root.resizable(True, True)
         
         # Dictionary to store all answers
         self.answers = {}
@@ -237,8 +237,3 @@ class MusicQuestionnaire:
         print("\nProcessing answers...")
         # Add your custom logic here
 
-# Run the application
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = MusicQuestionnaire(root)
-    root.mainloop()

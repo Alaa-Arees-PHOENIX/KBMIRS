@@ -1,4 +1,6 @@
+import tkinter as tk
 from clips import Environment
+from interface import MusicQuestionnaire
 
 env = Environment()
 
@@ -13,3 +15,8 @@ env.run()
 for fact in env.facts():
     if fact.template.name == 'musical_instrument':
         print (fact['name'])
+
+root = tk.Tk()
+app = MusicQuestionnaire(root)
+root.mainloop()
+
