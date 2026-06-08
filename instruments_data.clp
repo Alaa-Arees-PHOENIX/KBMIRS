@@ -56,7 +56,7 @@
 	)
 	
 	(musical_instrument
-		(name electric violin)
+		(name electric-violin)
 		(physical_type string)
 		(with_bellow FALSE)
 		(music_style classic oriental)
