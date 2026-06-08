@@ -181,15 +181,15 @@ class MusicQuestionnaire:
                 return
         
         # Store answers in variables
-        preferred_music_style = self.answers[1].get()      # Musical style
-        like_percussion_instruments = self.answers[2].get() == "True"  # Rhythm instrument (boolean)
-        budget = self.answers[3].get()      # Financial capacity
-        like_wind_instruments = self.answers[4].get()      # Lungs capacity
-        lungs_capacity = self.answers[5].get() == "True"  # Create harmonies (boolean)
-        enjoy_creating_harmonies = self.answers[6].get() == "True"  # Play with group (boolean)
-        like_to_play_with_group = self.answers[7].get() == "True"  # Travel a lot (boolean)
-        travels_alot = self.answers[8].get()    # Years for training
-        expected_time_of_training = self.answers[9].get() == "True"  # Complaining neighbors (boolean)
+        preferred_music_style = self.answers[1].get()    
+        like_percussion_instruments = self.answers[2].get() == "True" 
+        budget = self.answers[3].get()     
+        like_wind_instruments = self.answers[4].get() == "True"     
+        lungs_capacity = self.answers[5].get() 
+        enjoy_creating_harmonies = self.answers[6].get() == "True" 
+        like_to_play_with_group = self.answers[7].get() == "True" 
+        travels_alot = self.answers[8].get() == "True"  
+        expected_time_of_training = self.answers[9].get()  
         complaining_neighbors = self.answers[10].get() == "True"
         # Display all answers in a message box
         result_message = f"""Your Answers:
