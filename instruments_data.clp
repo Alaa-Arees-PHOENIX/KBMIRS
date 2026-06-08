@@ -33,7 +33,7 @@
 		(name keyboard)
 		(physical_type electric)
 		(with_bellow FALSE)
-		(music_style classic jazz rock)
+		(music_style jazz rock)
 		(price 2)
 		(portable TRUE)
 		(noisy FALSE) 
