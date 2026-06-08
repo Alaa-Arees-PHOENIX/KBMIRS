@@ -34,7 +34,7 @@
 		(physical_type electric)
 		(with_bellow FALSE)
 		(music_style jazz rock)
-		(price 2)
+		(price 1)
 		(portable TRUE)
 		(noisy FALSE) 
 		(solo_instrument FALSE)
