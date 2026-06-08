@@ -22,7 +22,7 @@
 		(name "Nina")
 		(budget 1)
 		(preferred_music_style classic)
-        (like_wind_instruments TRUE)
+        	(like_wind_instruments TRUE)
 		(like_percussion_instruments FALSE)
 		(travels_alot TRUE)
 		(complaining_neighbors TRUE)
