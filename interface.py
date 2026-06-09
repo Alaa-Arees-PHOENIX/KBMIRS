@@ -46,7 +46,7 @@ class MusicQuestionnaire:
         self.create_question(
             scrollable_frame, 1,
             "What musical style do you prefer listening to?",
-            ["classic", "jazz", "rock", "folk"],
+            ["classic", "jazz", "rock", "folk", "oriental"],
             "combobox"
         )
         
