@@ -1,8 +1,17 @@
+from clips import Environment
 import tkinter as tk
 from tkinter import ttk, messagebox
 
 class MusicQuestionnaire:
     def __init__(self, root):
+        self.env = Environment()
+
+        self.env.load ("instruments_data.clp")
+        self.env.load ("user.clp")
+        self.env.load ("knowledge_base.clp")
+
+        self.env.reset()
+
         self.root = root
         self.root.title("Music Preference Questionnaire")
         self.root.geometry("1366x768")
@@ -35,7 +44,7 @@ class MusicQuestionnaire:
         self.create_question(
             scrollable_frame, 1,
             "What musical style do you prefer listening to?",
-            ["classical", "jazz", "rock", "folk"],
+            ["classic", "jazz", "rock", "folk"],
             "combobox"
         )
         
@@ -207,33 +216,29 @@ class MusicQuestionnaire:
         """
         
         messagebox.showinfo("Questionnaire Results", result_message)
-        
-        # Print to console as well
-        print("\n" + "="*50)
-        print("USER ANSWERS:")
-        print("="*50)
-        print(f"1. Musical style: {preferred_music_style}")
-        print(f"2. Like rhythm instrument: {like_percussion_instruments}")
-        print(f"3. Financial capacity: {budget}")
-        print(f"4.Like wind instruments: {like_wind_instruments}")
-        print(f"5. Lungs capacity: {lungs_capacity}")
-        print(f"6. Want to create harmonies: {enjoy_creating_harmonies}")
-        print(f"7. Like to play with group: {like_to_play_with_group}")
-        print(f"8. Travel a lot: {travels_alot}")
-        print(f"9. Years for training: {expected_time_of_training}")
-        print(f"10. Have complaining neighbors: {complaining_neighbors}")
-        print("="*50)
-        
-        # You can now use these variables for further processing
-        # For example, you can call another function with these answers
-        self.process_answers(
-            preferred_music_style, like_percussion_instruments, budget, like_wind_instruments,
-            lungs_capacity, enjoy_creating_harmonies, like_to_play_with_group, travels_alot, 
-            expected_time_of_training, complaining_neighbors)
-    
-    def process_answers(self, style, percussion, finance, wind, lungs, harmonies, group, travel, training, neighbors):
-        """Process the answers (example function)"""
-        # This is where you can add your logic based on the answers
-        print("\nProcessing answers...")
-        # Add your custom logic here
 
+        mapper = {'low':0, 'short':0, 'medium':1, 'high':2, 'long':2, True:'TRUE', False:'FALSE'}
+        userAssertion = f"""(user
+		(name "Nina")
+		(budget {mapper[budget]})
+		(preferred_music_style {preferred_music_style})
+        (like_wind_instruments {mapper[like_wind_instruments]})
+		(like_percussion_instruments {mapper[like_percussion_instruments]})
+		(travels_alot {mapper[travels_alot]})
+		(complaining_neighbors {mapper[complaining_neighbors]})
+		(lungs_capacity {lungs_capacity})
+		(like_to_play_with_group {mapper[like_to_play_with_group]})
+		(expected_time_of_training {mapper[expected_time_of_training]})
+		(enjoy_creating_harmonies {mapper[enjoy_creating_harmonies]})
+		)"""
+        print (userAssertion)
+        self.env.assert_string (userAssertion)
+        self.env.run()
+
+        print ("available instruments that you might like:")
+        for fact in self.env.facts():
+            if fact.template.name == 'musical_instrument':
+                print (fact['name'])
+
+        self.env.reset()
+    
