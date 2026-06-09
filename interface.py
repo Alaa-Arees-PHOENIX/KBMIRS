@@ -235,7 +235,10 @@ class MusicQuestionnaire:
         """
         
         messagebox.showinfo("Questionnaire Results", result_message)
+        self.process_answers (userData)
 
+
+    def process_answers (self, userData):
         mapper = {'low':0, 'short':0, 'medium':1, 'high':2, 'long':2, True:'TRUE', False:'FALSE'}
         userAssertion = f"""(user
 		(budget {mapper[userData['budget']]})
@@ -259,4 +262,4 @@ class MusicQuestionnaire:
                 print (fact['name'])
 
         self.env.reset()
-    
+
