@@ -19,14 +19,11 @@ class MusicQuestionnaire:
         self.root.geometry("1366x768")
         self.root.resizable(True, True)
         
-        # Dictionary to store all answers
         self.answers = {}
         
-        # Create main frame with scrolling
         main_frame = tk.Frame(root)
         main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
         
-        # Canvas and scrollbar for scrolling
         canvas = tk.Canvas(main_frame)
         scrollbar = tk.Scrollbar(main_frame, orient="vertical", command=canvas.yview)
         scrollable_frame = tk.Frame(canvas)
@@ -42,7 +39,6 @@ class MusicQuestionnaire:
         canvas.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
         
-        # Question 1: Musical style
         self.create_question(
             scrollable_frame, 1,
             "What musical style do you prefer listening to?",
@@ -50,7 +46,6 @@ class MusicQuestionnaire:
             "combobox"
         )
         
-        # Question 2: Rhythm instrument
         self.create_question(
             scrollable_frame, 2,
             "Do you like percussion instruments?",
@@ -58,7 +53,6 @@ class MusicQuestionnaire:
             "radiobutton"
         )
         
-        # Question 3: Financial capacity
         self.create_question(
             scrollable_frame, 3,
             "What is your financial capacity?",
@@ -67,7 +61,6 @@ class MusicQuestionnaire:
         )
         
 
-        # Question 4: wind instrument
         self.create_question(
             scrollable_frame, 4,
             "Do you like wind instruments?",
@@ -75,7 +68,6 @@ class MusicQuestionnaire:
             "radiobutton"
         )
 
-        # Question 5: Lungs capacity
         self.create_question(
             scrollable_frame, 5,
             "How do you describe your lungs capacity?",
@@ -83,7 +75,6 @@ class MusicQuestionnaire:
             "combobox"
         )
         
-        # Question 6: Create harmonies
         self.create_question(
             scrollable_frame, 6,
             "Do you want to create harmonies?",
@@ -91,7 +82,6 @@ class MusicQuestionnaire:
             "radiobutton"
         )
         
-        # Question 7: Play with group
         self.create_question(
             scrollable_frame, 7,
             "Do you like to play with a group?",
@@ -99,7 +89,6 @@ class MusicQuestionnaire:
             "radiobutton"
         )
         
-        # Question 8: Travel a lot
         self.create_question(
             scrollable_frame, 8,
             "Do you travel a lot?",
@@ -107,7 +96,6 @@ class MusicQuestionnaire:
             "radiobutton"
         )
         
-        # Question 9: Years for training
         self.create_question(
             scrollable_frame, 9,
             "How you describe the period you have for training (to be professional)?",
@@ -115,7 +103,6 @@ class MusicQuestionnaire:
             "combobox"
         )
         
-        # Question 10: Complaining neighbors
         self.create_question(
             scrollable_frame, 10,
             "Do you have complaining neighbors?",
@@ -124,7 +111,7 @@ class MusicQuestionnaire:
         )
         
         # Submit button
-        submit_btn = tk.Button(
+        tk.Button(
             scrollable_frame,
             text="Submit Answers",
             command=self.submit_answers,
@@ -132,11 +119,10 @@ class MusicQuestionnaire:
             fg="white",
             font=("Arial", 12, "bold"),
             pady=10
-        )
-        submit_btn.pack(pady=20)
+        ).pack(pady=20)
 
         # Quick test button
-        quick_test_btn = tk.Button(
+        tk.Button(
             scrollable_frame,
             text="Quick Test",
             command=self.quick_test,
@@ -144,8 +130,15 @@ class MusicQuestionnaire:
             fg="white",
             font=("Arial", 12, "bold"),
             pady=10
+        ).pack(pady=20)
+
+        self.resultsLabel = tk.Label(
+            scrollable_frame,
+            text='No results yet.',
+            font = ("Arial", 12, "bold"),
+            fg = 'green'
         )
-        quick_test_btn.pack(pady=20)
+        self.resultsLabel.pack (pady = 20)
         
         # Bind mouse wheel for scrolling
         def on_mousewheel(event):
@@ -158,7 +151,6 @@ class MusicQuestionnaire:
         frame = tk.Frame(parent)
         frame.pack(fill=tk.X, pady=10)
         
-        # Question label
         label = tk.Label(
             frame,
             text=f"{q_num}. {question_text}",
@@ -220,7 +212,7 @@ class MusicQuestionnaire:
         else: # this is a quick test
             userData = quickTests[randint(0, len(quickTests) - 1)]
 
-        result_message = f"""Your Answers:
+        answers_message = f"""Your Answers:
         
 1. Musical Style: {userData['preferred_music_style']}
 2. Like Rhythm Instrument: {userData['like_percussion_instruments']}
@@ -234,7 +226,7 @@ class MusicQuestionnaire:
 10. Have Complaining Neighbors: {userData['complaining_neighbors']}
         """
         
-        messagebox.showinfo("Questionnaire Results", result_message)
+        messagebox.showinfo("Answers Confirmation", answers_message)
         self.process_answers (userData)
 
 
@@ -243,7 +235,7 @@ class MusicQuestionnaire:
         userAssertion = f"""(user
 		(budget {mapper[userData['budget']]})
 		(preferred_music_style {userData['preferred_music_style']})
-        (like_wind_instruments {mapper[userData['like_wind_instruments']]})
+		(like_wind_instruments {mapper[userData['like_wind_instruments']]})
 		(like_percussion_instruments {mapper[userData['like_percussion_instruments']]})
 		(travels_alot {mapper[userData['travels_alot']]})
 		(complaining_neighbors {mapper[userData['complaining_neighbors']]})
@@ -256,10 +248,11 @@ class MusicQuestionnaire:
         self.env.assert_string (userAssertion)
         self.env.run()
 
-        print ("available instruments that you might like:")
+        resultsMessage = "available instruments that you might like:\n"
         for fact in self.env.facts():
             if fact.template.name == 'musical_instrument':
-                print (fact['name'])
+                resultsMessage += (fact['name'] + '\n')
+        self.resultsLabel.config (text = resultsMessage)
 
         self.env.reset()
 
