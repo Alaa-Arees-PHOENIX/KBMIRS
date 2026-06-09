@@ -219,7 +219,6 @@ class MusicQuestionnaire:
 
         mapper = {'low':0, 'short':0, 'medium':1, 'high':2, 'long':2, True:'TRUE', False:'FALSE'}
         userAssertion = f"""(user
-		(name "Nina")
 		(budget {mapper[budget]})
 		(preferred_music_style {preferred_music_style})
         (like_wind_instruments {mapper[like_wind_instruments]})

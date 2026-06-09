@@ -1,5 +1,4 @@
 (deftemplate user
-	(slot name)
 	(slot preferred_music_style (type SYMBOL) (allowed-symbols classic jazz rock blues folk))
 	(slot like_wind_instruments (type SYMBOL) (allowed-symbols TRUE FALSE))
 	(slot like_percussion_instruments (type SYMBOL) (allowed-symbols TRUE FALSE))
