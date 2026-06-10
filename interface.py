@@ -248,10 +248,14 @@ class MusicQuestionnaire:
         self.env.assert_string (userAssertion)
         self.env.run()
 
+        noAvailableInstruments = True
         resultsMessage = "available instruments that you might like:\n"
         for fact in self.env.facts():
             if fact.template.name == 'musical_instrument':
                 resultsMessage += (fact['name'] + '\n')
+                noAvailableInstruments = False
+        if noAvailableInstruments:
+            resultsMessage = "Sorry, we couldn't find anything\nmatching your requirements );\nGo find new a hobby\nmaybe you would better try dancing XD"
         self.resultsLabel.config (text = resultsMessage)
 
         self.env.reset()
