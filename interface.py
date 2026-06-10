@@ -49,7 +49,7 @@ class MusicQuestionnaire:
         self.create_question(
             scrollable_frame, 2,
             "Do you like percussion instruments?",
-            [True, False],
+            ["Yes", "No"],
             "radiobutton"
         )
         
@@ -64,7 +64,7 @@ class MusicQuestionnaire:
         self.create_question(
             scrollable_frame, 4,
             "Do you like wind instruments?",
-            [True, False],
+            ["Yes", "No"],
             "radiobutton"
         )
 
@@ -78,27 +78,27 @@ class MusicQuestionnaire:
         self.create_question(
             scrollable_frame, 6,
             "Do you want to create harmonies?",
-            [True, False],
+            ["Yes", "No"],
             "radiobutton"
         )
         
         self.create_question(
             scrollable_frame, 7,
             "Do you like to play with a group?",
-            [True, False],
+            ["Yes", "No"],
             "radiobutton"
         )
         
         self.create_question(
             scrollable_frame, 8,
             "Do you travel a lot?",
-            [True, False],
+            ["Yes", "No"],
             "radiobutton"
         )
         
         self.create_question(
             scrollable_frame, 9,
-            "How you describe the period you have for training (to be professional)?",
+            "How would you describe the period you have for training (to be professional)?",
             ["short", "medium", "long"],
             "combobox"
         )
@@ -106,7 +106,7 @@ class MusicQuestionnaire:
         self.create_question(
             scrollable_frame, 10,
             "Do you have complaining neighbors?",
-            [True, False],
+            ["Yes", "No"],
             "radiobutton"
         )
         
@@ -199,15 +199,15 @@ class MusicQuestionnaire:
                     return
 
             userData['preferred_music_style'] = self.answers[1].get()
-            userData['like_percussion_instruments'] = self.answers[2].get() == "True"
+            userData['like_percussion_instruments'] = self.answers[2].get() == "Yes"
             userData['budget'] = self.answers[3].get()
-            userData['like_wind_instruments'] = self.answers[4].get() == "True"
+            userData['like_wind_instruments'] = self.answers[4].get() == "Yes"
             userData['lungs_capacity'] = self.answers[5].get()
-            userData['enjoy_creating_harmonies'] = self.answers[6].get() == "True"
-            userData['like_to_play_with_group'] = self.answers[7].get() == "True"
-            userData['travels_alot'] = self.answers[8].get() == "True"
+            userData['enjoy_creating_harmonies'] = self.answers[6].get() == "Yes"
+            userData['like_to_play_with_group'] = self.answers[7].get() == "Yes"
+            userData['travels_alot'] = self.answers[8].get() == "Yes"
             userData['expected_time_of_training'] = self.answers[9].get()
-            userData['complaining_neighbors'] = self.answers[10].get() == "True"
+            userData['complaining_neighbors'] = self.answers[10].get() == "Yes"
 
         else: # this is a quick test
             userData = quickTests[randint(0, len(quickTests) - 1)]
